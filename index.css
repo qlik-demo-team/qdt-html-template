@@ -4,3 +4,5 @@ h3 {padding-bottom: 50px;color: black;padding-top: 20px;}
 .color-black {color: black;}
 .pt20 { padding-top: 20px; }
 .pt50 { padding-top: 50px; }
+ul {list-style: none;}
+li {display: inline-block;}
