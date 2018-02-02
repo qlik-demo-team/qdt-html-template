@@ -16,7 +16,7 @@
         <script type="text/javascript" src="qdt-components.js"></script>
     </head>
     <body>
-        <qdt-component id="qdt1"></qdt-component>
+        <div id="qdt1"></div>
     </body>
 ```
 
