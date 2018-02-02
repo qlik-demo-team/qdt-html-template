@@ -7,7 +7,7 @@
 		exports["qdtComponents"] = factory();
 	else
 		root["qdtComponents"] = factory();
-})(typeof self !== 'undefined' ? self : this, function() {
+})(typeof self !== 'undefined' ? self : this, function() { 
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
