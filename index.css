@@ -6,3 +6,4 @@ h3 {padding-bottom: 50px;color: black;padding-top: 20px;}
 .pt50 { padding-top: 50px; }
 ul {list-style: none;}
 li {display: inline-block;}
+.banner {width:100%; height:100%; max-width:810px; max-height: 250px;}

@@ -1,6 +1,4 @@
-![Angular](HTML5_Logo.png "Angular")
-![Arrows](if_arrow_7_393270.png "Arrows")
-![Qlik Sense](icon_SenseLibrary.jpg "Qlik Sense")
+![Qlik Sense](banner_html5_h250.jpg "Qlik Sense")
 
 # Simple Html template that uses [qdt-components](https://github.com/qlik-demo-team/qdt-components)
 
