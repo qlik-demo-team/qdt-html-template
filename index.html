@@ -21,19 +21,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-</head>
+</head> 
 
 <body>
-    <div class="text-center">
+    <div class="qdt-html-template text-center">
         <img src="banner_html5.jpg" class="banner">
         <h3>This is a simple html page that uses <a href="https://github.com/qlik-demo-team/qdt-components">qdt-components</a>.</h3>
         <ul>
             <li><a href="index.html">Simple Object</a> |</li>
-            <li><a href="session-object.html">Session Object</a></li>
+            <li><a href="session-object.html">Session Object</a> | </li>
+            <li><a href="selection-toolbar.html">Selection Toolbar</a> | </li>
+            <li><a href="picasso-horizontalbarchart.html">Picasso - Horizontal Barchart</a></li>
         </ul>
     </div>
     <div id="qdt1"></div>
     
+    <script type="text/javascript">
+        var qConfig = {
+             "config": {
+                 "host": "sense-demo.qlik.com",
+                 "secure": true,
+                 "port": 443,
+                 "prefix": "/",
+                 "appId": "133dab5d-8f56-4d40-b3e0-a6b401391bde"
+             },
+             "connections": { 
+                 "vizApi": true, 
+                 "engineApi": true 
+             }
+         }
+         var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
+         var element = document.getElementById('qdt1');
+         QdtComponent.render('QdtViz', {id: 'a5e0f12c-38f5-4da9-8f3f-0e4566b28398', height:'300px'}, element);
+     </script>
+     
     <div class="pt50">
         <h5>Html</h5>
         <pre><code class="html">
@@ -68,24 +89,6 @@
         </code></pre>
     </div>
 
-    <script type="text/javascript">
-        var qConfig = {
-             "config": {
-                 "host": "sense-demo.qlik.com",
-                 "secure": true,
-                 "port": 443,
-                 "prefix": "/",
-                 "appId": "133dab5d-8f56-4d40-b3e0-a6b401391bde"
-             },
-             "connections": { 
-                 "vizApi": true, 
-                 "engineApi": false 
-             }
-         }
-         var QdtComponent = new window.qdtComponents.default(qConfig.config, qConfig.connections);
-         var element = document.getElementById('qdt1');
-         QdtComponent.render('QdtViz', {id: 'a5e0f12c-38f5-4da9-8f3f-0e4566b28398', height:'300px'}, element);
-     </script>
 </body>
 
 </html>
