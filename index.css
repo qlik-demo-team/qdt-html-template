@@ -4,6 +4,8 @@ h3 {padding-bottom: 50px;color: black;padding-top: 20px;}
 .color-black {color: black;}
 .pt20 { padding-top: 20px; }
 .pt50 { padding-top: 50px; }
+.pb30 { padding-bottom: 30px; }
+.pb50 { padding-bottom: 50px; }
 .qdt-html-template ul {list-style: none;}
 .qdt-html-template li {display: inline-block;}
 .banner {width:100%; height:100%; max-width:810px; max-height: 250px;}

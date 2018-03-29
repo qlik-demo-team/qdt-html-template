@@ -1,0 +1,25 @@
+{
+  "name": "qdt-html-template",
+  "version": "1.0.0",
+  "description": "simple html template to use with qdt-components",
+  "main": "index.html",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "gulp": "^3.9.1",
+    "live-server": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qlik-demo-team/qdt-html-template.git"
+  },
+  "author": "Qlik Demo Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qlik-demo-team/qdt-html-template/issues"
+  },
+  "homepage": "https://github.com/qlik-demo-team/qdt-html-template#readme"
+}
