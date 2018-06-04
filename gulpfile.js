@@ -3,11 +3,17 @@ var exec = require('child_process').exec;
 const liveServer = require("live-server");
 const fs = require('fs');
 
-gulp.task('default', ['server']);
+gulp.task('default', ['copy-qdt','server']);
 
 gulp.task('watch', function() {
     gulp.watch(['*.html','*.css','*.js'], []);
     console.log('Waiting for changes...')
+})
+gulp.task('copy-qdt', function() {    
+    return gulp.src([
+        'node_modules/qdt-components/dist/*.*'
+    ])
+    .pipe(gulp.dest('./js/'));
 })
 gulp.task('server', function() {
     var params = {
@@ -27,7 +33,6 @@ gulp.task('server', function() {
         middleware: [function(req, res, next) { next(); }], // Takes an array of Connect-compatible middleware that are injected into the server middleware stack 
         watch: "*.*"
     };
-    console.log(1)
     liveServer.start(params);
 })
 gulp.task('aws', function() {

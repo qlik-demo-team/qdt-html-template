@@ -16,7 +16,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="index.css" />
     <link rel="shortcut icon" href="favicon.ico" />
-    <script type="text/javascript" src="qdt-components.js"></script>
+    <script type="text/javascript" src="js/qdt-components.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
@@ -26,7 +26,7 @@
 <body>
     <div class="qdt-html-template text-center">
         <img src="banner_html5.jpg" class="banner">
-        <h3>This is a simple html page that uses <a href="https://github.com/qlik-demo-team/qdt-components">qdt-components</a>.</h3>
+        <h3>This is a simple html page that uses <a href="https://github.com/qlik-demo-team/qdt-components">qdt-components</a> (1.1.52).</h3>
         <ul>
             <li><a href="index.html">Simple Object</a> |</li>
             <li><a href="session-object.html">Session Object</a> | </li>
@@ -42,12 +42,12 @@
                  "host": "sense-demo.qlik.com",
                  "secure": true,
                  "port": 443,
-                 "prefix": "/",
+                 "prefix": "",
                  "appId": "133dab5d-8f56-4d40-b3e0-a6b401391bde"
              },
              "connections": { 
                  "vizApi": true, 
-                 "engineApi": true 
+                 "engineApi": false 
              }
          }
          var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);

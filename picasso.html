@@ -17,7 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="index.css" />
     <link rel="shortcut icon" href="favicon.ico" />
-    <script type="text/javascript" src="qdt-components.js"></script>
+    <script type="text/javascript" src="js/qdt-components.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
@@ -42,11 +42,13 @@
     <div id="qdt4" class="pb50"></div>
     <div id="qdt5" class="pb50"></div>
     <div id="qdt6" class="pb50"></div>
+    <div id="qdt7" class="pb50"></div>
+    <div id="qdt8" class="pb50"></div>
     
     <script type="text/javascript">
         var qConfig = {
              "config": {
-                 "host": "sense-demo-staging.qlik.com",
+                 "host": "sense-demo.qlik.com",
                  "secure": true,
                  "port": 443,
                  "prefix": "",
@@ -60,12 +62,11 @@
          var vizOptions = {}
          var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
          QdtComponent.render('QdtSelectionToolbar', {height:'300px'}, document.getElementById('qdt1'));
-         QdtComponent.render('QdtPicasso', {type: 'horizontalBar', cols: ['Case Owner Group', `=Num(Avg([Case Duration Time]), '##')`], options: vizOptions, height:300}, document.getElementById('qdt2'));
-         QdtComponent.render('QdtPicasso', {type: 'verticalBar', cols: ['Case Owner Group', `=Num(Avg([Case Duration Time]), '##')`], options: vizOptions, height:300}, document.getElementById('qdt3'));
-         QdtComponent.render('QdtPicasso', {type: 'pie', cols: ['Case Owner Group', `=Num(Avg([Case Duration Time]), '##')`], options: vizOptions, height:300}, document.getElementById('qdt4'));
-         QdtComponent.render('QdtPicasso', {type: 'horizontalBar', cols: ['Case Owner', `=Count(Distinct [%CaseId])`], options: vizOptions, height:300}, document.getElementById('qdt5'));
-         QdtComponent.render('QdtPicasso', {type: 'verticalBar', cols: ['Case Owner', `=Count(Distinct [%CaseId])`], options: vizOptions, height:300, width:300}, document.getElementById('qdt6'));
-         QdtComponent.render('QdtPicasso', {type: 'scotterplot', cols: ['Case Owner', `=Avg([Case Duration Time])`, `=Count( {$<Status -={'Closed'} >} Distinct %CaseId )`], options: vizOptions, height:300}, document.getElementById('qdt6'));
+         QdtComponent.render('QdtPicasso', {type: 'horizontalBarchart', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:300}, document.getElementById('qdt2'));
+         QdtComponent.render('QdtPicasso', {type: 'verticalBarchart', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:300}, document.getElementById('qdt3'));
+         QdtComponent.render('QdtPicasso', {type: 'pie', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:400}, document.getElementById('qdt4'));
+         QdtComponent.render('QdtPicasso', {type: 'scatterplot', cols: ['Case Owner', `=Avg([Case Duration Time])`, `=Count( {$<Status -={'Closed'} >} Distinct %CaseId )`], outerHeight:300}, document.getElementById('qdt7'));
+         QdtComponent.render('QdtPicasso', {type: 'lineChart', cols: ['Date.autoCalendar.YearMonth', `=Sum([Number of New Cases])`], outerHeight:300}, document.getElementById('qdt8'));
      </script>
 
      

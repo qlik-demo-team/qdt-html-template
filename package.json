@@ -6,7 +6,8 @@
   "dependencies": {
     "child_process": "^1.0.2",
     "gulp": "^3.9.1",
-    "live-server": "^1.2.0"
+    "live-server": "^1.2.0",
+    "qdt-components": "^1.1.52"
   },
   "devDependencies": {},
   "scripts": {
