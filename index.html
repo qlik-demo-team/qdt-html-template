@@ -75,7 +75,7 @@
             "host": "sense-demo.qlik.com",
             "secure": true,
             "port": 443,
-            "prefix": "/",
+            "prefix": "",
             "appId": "133dab5d-8f56-4d40-b3e0-a6b401391bde"
         },
         "connections": { 
@@ -83,7 +83,7 @@
             "engineApi": false 
         }
     }
-    var QdtComponent = new window.qdtComponents.default(qConfig.config, qConfig.connections);
+    var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
     var element = document.getElementById('qdt1');
     QdtComponent.render('QdtViz', {id: 'a5e0f12c-38f5-4da9-8f3f-0e4566b28398', height:'300px'}, element);
         </code></pre>
