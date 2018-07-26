@@ -52,9 +52,28 @@
                  "engineApi": false 
              }
          }
+        var viz2 = {
+            type: 'QdtViz',
+            props: {
+                type: 'table',
+                cols: [
+                    'Case Owner',
+                    'Employee Status',
+                    "=dual(floor((vToday - [Employee Hire Date])/365) & 'y ' & floor(((vToday - [Employee Hire Date])/365 - floor((vToday - [Employee Hire Date])/365)) * 12) & 'm', vToday - [Employee Hire Date])",
+                    "=Count( {$<Status -={'Closed'} >} Distinct %CaseId )",
+                    "=Count( {$<[Case Is Closed] ={'True'} >} %CaseId )",
+                    '=Count(Distinct [%CaseId])',
+                ],
+                options: {
+                    showTitles: true,
+                    title: 'Resource Details',
+                },
+                height: '300px',
+            }
+        }
          var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
          var element = document.getElementById('qdt1');
-         QdtComponent.render('QdtViz', {id: 'a5e0f12c-38f5-4da9-8f3f-0e4566b28398', height:'300px'}, element);
+         QdtComponent.render(viz2.type, viz2.props, element);
      </script>
      
     <div class="pt50">
@@ -85,9 +104,28 @@
                     "engineApi": false 
                 }
             }
-            var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
-            var element = document.getElementById('qdt1');
-            QdtComponent.render('QdtViz', {id: 'a5e0f12c-38f5-4da9-8f3f-0e4566b28398', height:'300px'}, element);
+            var viz2 = {
+                type: 'QdtViz',
+                props: {
+                    type: 'table',
+                    cols: [
+                        'Case Owner',
+                        'Employee Status',
+                        "=dual(floor((vToday - [Employee Hire Date])/365) & 'y ' & floor(((vToday - [Employee Hire Date])/365 - floor((vToday - [Employee Hire Date])/365)) * 12) & 'm', vToday - [Employee Hire Date])",
+                        "=Count( {$<Status -={'Closed'} >} Distinct %CaseId )",
+                        "=Count( {$<[Case Is Closed] ={'True'} >} %CaseId )",
+                        '=Count(Distinct [%CaseId])',
+                    ],
+                    options: {
+                        showTitles: true,
+                        title: 'Resource Details',
+                    },
+                    height: '300px',
+                }
+            }
+             var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
+             var element = document.getElementById('qdt1');
+             QdtComponent.render(viz2.type, viz2.props, element);
         </code></pre>
     </div>
 
