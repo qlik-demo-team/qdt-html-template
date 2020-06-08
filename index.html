@@ -1,0 +1,100 @@
+<!doctype html>
+<!-- <html qva-bootstrap="false" lang="en"> -->
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Simple html with qdt-components</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="index.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <script type="text/javascript" src="js/qdt-components.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="/js/qdt-lui.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head> 
+
+<body>
+    <div class="qdt-html-template text-center">
+        <img src="banner_html5.jpg" class="banner">
+        <h3>This is a simple html page that uses <a href="https://github.com/qlik-demo-team/qdt-components">qdt-components</a> (1.1.62).</h3>
+        <ul>
+            <li><a href="index.html">Simple Object</a> |</li>
+            <li><a href="session-object.html">Session Object</a> | </li>
+            <li><a href="selection-toolbar.html">Selection Toolbar</a> | </li>
+            <li><a href="picasso.html">Picasso - Charts</a> | </li>
+            <li><a href="table.html">Table from Engine API</a> | </li>
+            <li><a href="kpi.html">KPI from Engine API</a></li>
+        </ul>
+    </div>
+    <div id="qdt1"></div>
+    <div id="qdt2"></div>
+    
+    <script type="text/javascript">
+        var qConfig = {
+             "config": {
+                 "host": "sense-demo.qlik.com",
+                 "secure": true,
+                 "port": 443,
+                 "prefix": "",
+                 "appId": "133dab5d-8f56-4d40-b3e0-a6b401391bde"
+             },
+             "connections": { 
+                 "vizApi": true, 
+                 "engineApi": false 
+             }
+         }
+         var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
+         var element = document.getElementById('qdt1');
+         var element2 = document.getElementById('qdt2');
+         QdtComponent.render('QdtViz', {id: 'a5e0f12c-38f5-4da9-8f3f-0e4566b28398', height:'300px'}, element);
+         QdtLui.render('LuiDropdown');
+     </script>
+     
+    <div class="pt50">
+        <h5>Html</h5>
+        <pre><code class="html">
+            < head>
+                < script type="text/javascript" src="qdt-components.js">< /script>
+            < /head>
+            < body>
+                < div id="qdt1">< /div>
+            < /body>
+        </code></pre>
+    </div>
+    
+    <div class="pt20">
+        <h5>Javascript</h5>
+        <pre><code class="javascript">
+            var qConfig = {
+                "config": {
+                    "host": "your-server",
+                    "secure": true,
+                    "port": 443,
+                    "prefix": "",
+                    "appId": "133dab5d-8f56-4d40-b3e0-a6b401391bde"
+                },
+                "connections": { 
+                    "vizApi": true, 
+                    "engineApi": false 
+                }
+            }
+            var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
+            var element = document.getElementById('qdt1');
+            QdtComponent.render('QdtViz', {id: 'a5e0f12c-38f5-4da9-8f3f-0e4566b28398', height:'300px'}, element);
+        </code></pre>
+    </div>
+
+</body>
+
+</html>
