@@ -17,7 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="index.css" />
     <link rel="shortcut icon" href="favicon.ico" />
-    <script type="text/javascript" src="js/qdt-components.js"></script>
+    <script type="text/javascript" src="js/3.0/qdt-components.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
@@ -46,52 +46,96 @@
     <div id="qdt8" class="pb50"></div>
     
     <script type="text/javascript">
-        var qConfig = {
-             "config": {
-                 "host": "sense-demo.qlik.com",
-                 "secure": true,
-                 "port": 443,
-                 "prefix": "",
-                 "appId": "133dab5d-8f56-4d40-b3e0-a6b401391bde"
-             },
-             "connections": { 
-                 "vizApi": false, 
-                 "engineApi": true 
-             }
-         }
-         var vizOptions = {}
-         var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
-         QdtComponent.render('QdtSelectionToolbar', {height:'300px'}, document.getElementById('qdt1'));
-         QdtComponent.render('QdtPicasso', {type: 'horizontalBarchart', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:300}, document.getElementById('qdt2'));
-         QdtComponent.render('QdtPicasso', {type: 'verticalBarchart', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:300}, document.getElementById('qdt3'));
-         QdtComponent.render('QdtPicasso', {type: 'pie', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:400}, document.getElementById('qdt4'));
-         QdtComponent.render('QdtPicasso', {type: 'scatterplot', cols: ['Case Owner', `=Avg([Case Duration Time])`, `=Count( {$<Status -={'Closed'} >} Distinct %CaseId )`], outerHeight:300}, document.getElementById('qdt7'));
-        
-        var components = QdtComponents.picasso.components;
-        var props = {
-            cols: [
-                "Case Owner Group",
-                "=Num(Avg([Case Duration Time]), '##.0')",
-                "=Count( {$<Priority={'Low'}, Status -={'Closed'} >} Distinct %CaseId )",
-                "=Count( {$<Priority={'Medium'}, Status -={'Closed'} >} Distinct %CaseId )",
-                "=Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )",
-            ],
-            outerHeight: 300,
-            settings: QdtComponents.picasso.settings.verticalBarchart
+        // var qConfig = {
+        //      "config": {
+        //          "host": "sense-demo.qlik.com",
+        //          "secure": true,
+        //          "port": 443,
+        //          "prefix": "",
+        //          "appId": "133dab5d-8f56-4d40-b3e0-a6b401391bde"
+        //      },
+        //      "connections": { 
+        //          "vizApi": false, 
+        //          "engineApi": true 
+        //      }
+        //  }
+         const config = {
+            host: 'sense-demo.qlik.com',
+            secure: true,
+            port: 443,
+            prefix: '',
+            appId: '133dab5d-8f56-4d40-b3e0-a6b401391bde', // Helpdesk
         };
-        props.settings.scales.y = { data: { fields: ['qMeasureInfo/0', 'qMeasureInfo/1', 'qMeasureInfo/2'] }, invert: true, expand: 0.04 };
-          props.settings.components.push(components.line({
-            displayOrder: 3, y: { field: 'qMeasureInfo/1' }, stroke: '#960000',
-          }));
-          props.settings.components.push(components.point({ displayOrder: 4, y: { field: 'qMeasureInfo/1' }, fill: '#960000' }));
-          props.settings.components.push(components.line({
-            displayOrder: 5, y: { field: 'qMeasureInfo/2' }, stroke: '#99cc66',
-          }));
-          props.settings.components.push(components.point({ displayOrder: 6, y: { field: 'qMeasureInfo/2' }, fill: '#99cc66' }));
-          props.settings.components.push(components.point({ displayOrder: 7, y: { field: 'qMeasureInfo/3' }, fill: '#275378' }));
+        const { qdtEnigma, qdtCompose, QdtSelections, QdtPicasso, useBarChartSettings } = window.QdtComponents;
+        qdtEnigma(config)
+					.then(app => {
+							console.log(app)
+							qdtCompose({
+								element: document.getElementById('qdt1'),
+								component: QdtSelections,
+								app: app,
+								options: {},
+								properties: {
+									qSelectionObjectDef: {},
+								}
+							});
+							qdtCompose({
+								element: document.getElementById('qdt2'),
+								component: QdtPicasso,
+								app,
+								options: {
+									settings: useBarChartSettings({
+										orientation: 'horizontal',
+									}),
+									height: 400,
+								},
+								properties: {
+									qHyperCubeDef: {
+										qDimensions: [
+											{ qDef: { qFieldDefs: ['Case Owner Group'] }, qNullSuppression: true },
+										],
+										qMeasures: [
+											{ qDef: { qDef: 'Avg([Case Duration Time])', autoSort: false }, qSortBy: { qSortByNumeric: -1 } },
+										],
+										qInterColumnSortOrder: [1, 0],
+									},
+								}
+							});
+					})
+         console.log(engineApiAppPromise)
+        //  var vizOptions = {}
+        //  var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
+        //  QdtComponent.render('QdtSelectionToolbar', {height:'300px'}, document.getElementById('qdt1'));
+        //  QdtComponent.render('QdtPicasso', {type: 'horizontalBarchart', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:300}, document.getElementById('qdt2'));
+        //  QdtComponent.render('QdtPicasso', {type: 'verticalBarchart', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:300}, document.getElementById('qdt3'));
+        //  QdtComponent.render('QdtPicasso', {type: 'pie', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:400}, document.getElementById('qdt4'));
+        //  QdtComponent.render('QdtPicasso', {type: 'scatterplot', cols: ['Case Owner', `=Avg([Case Duration Time])`, `=Count( {$<Status -={'Closed'} >} Distinct %CaseId )`], outerHeight:300}, document.getElementById('qdt7'));
+        
+        // var components = QdtComponents.picasso.components;
+        // var props = {
+        //     cols: [
+        //         "Case Owner Group",
+        //         "=Num(Avg([Case Duration Time]), '##.0')",
+        //         "=Count( {$<Priority={'Low'}, Status -={'Closed'} >} Distinct %CaseId )",
+        //         "=Count( {$<Priority={'Medium'}, Status -={'Closed'} >} Distinct %CaseId )",
+        //         "=Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )",
+        //     ],
+        //     outerHeight: 300,
+        //     settings: QdtComponents.picasso.settings.verticalBarchart
+        // };
+        // props.settings.scales.y = { data: { fields: ['qMeasureInfo/0', 'qMeasureInfo/1', 'qMeasureInfo/2'] }, invert: true, expand: 0.04 };
+        //   props.settings.components.push(components.line({
+        //     displayOrder: 3, y: { field: 'qMeasureInfo/1' }, stroke: '#960000',
+        //   }));
+        //   props.settings.components.push(components.point({ displayOrder: 4, y: { field: 'qMeasureInfo/1' }, fill: '#960000' }));
+        //   props.settings.components.push(components.line({
+        //     displayOrder: 5, y: { field: 'qMeasureInfo/2' }, stroke: '#99cc66',
+        //   }));
+        //   props.settings.components.push(components.point({ displayOrder: 6, y: { field: 'qMeasureInfo/2' }, fill: '#99cc66' }));
+        //   props.settings.components.push(components.point({ displayOrder: 7, y: { field: 'qMeasureInfo/3' }, fill: '#275378' }));
 
-        console.log(props)
-         QdtComponent.render('QdtPicasso', props, document.getElementById('qdt8'));
+        // console.log(props)
+        //  QdtComponent.render('QdtPicasso', props, document.getElementById('qdt8'));
      </script>
 
      
