@@ -46,19 +46,6 @@
     <div id="qdt8" class="pb50"></div>
     
     <script type="text/javascript">
-        // var qConfig = {
-        //      "config": {
-        //          "host": "sense-demo.qlik.com",
-        //          "secure": true,
-        //          "port": 443,
-        //          "prefix": "",
-        //          "appId": "133dab5d-8f56-4d40-b3e0-a6b401391bde"
-        //      },
-        //      "connections": { 
-        //          "vizApi": false, 
-        //          "engineApi": true 
-        //      }
-        //  }
          const config = {
             host: 'sense-demo.qlik.com',
             secure: true,
@@ -66,7 +53,7 @@
             prefix: '',
             appId: '133dab5d-8f56-4d40-b3e0-a6b401391bde', // Helpdesk
         };
-        const { qdtEnigma, qdtCompose, QdtSelections, QdtPicasso, useBarChartSettings } = window.QdtComponents;
+        const { qdtEnigma, qdtCompose, QdtSelections, QdtPicasso, useBarChartSettings, useScatterPlotSettings } = window.QdtComponents;
         qdtEnigma(config)
 					.then(app => {
 							console.log(app)
@@ -79,6 +66,8 @@
 									qSelectionObjectDef: {},
 								}
 							});
+
+							// Barchart
 							qdtCompose({
 								element: document.getElementById('qdt2'),
 								component: QdtPicasso,
@@ -101,15 +90,41 @@
 									},
 								}
 							});
+
+							// Scatterplot
+							qdtCompose({
+								element: document.getElementById('qdt7'),
+								component: QdtPicasso,
+								app,
+								options: {
+									settings: useScatterPlotSettings(),
+									height: 400,
+								},
+								properties: {
+									qHyperCubeDef: {
+										qDimensions: [
+											{ qDef: { qFieldDefs: ['Case Owner'] } },
+										],
+										qMeasures: [
+											{
+												qDef: {
+													qDef: 'Avg([Case Duration Time])',
+													qLabel: 'Avg Case Duration Time',
+												},
+											}, {
+												qDef: {
+													qDef: 'Count( {$<Status -={\'Closed\'} >} Distinct %CaseId )',
+												},
+											},
+										],
+									},
+								}
+							});
 					})
-         console.log(engineApiAppPromise)
-        //  var vizOptions = {}
-        //  var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
-        //  QdtComponent.render('QdtSelectionToolbar', {height:'300px'}, document.getElementById('qdt1'));
-        //  QdtComponent.render('QdtPicasso', {type: 'horizontalBarchart', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:300}, document.getElementById('qdt2'));
+				 console.log(engineApiAppPromise)
+				 
         //  QdtComponent.render('QdtPicasso', {type: 'verticalBarchart', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:300}, document.getElementById('qdt3'));
         //  QdtComponent.render('QdtPicasso', {type: 'pie', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:400}, document.getElementById('qdt4'));
-        //  QdtComponent.render('QdtPicasso', {type: 'scatterplot', cols: ['Case Owner', `=Avg([Case Duration Time])`, `=Count( {$<Status -={'Closed'} >} Distinct %CaseId )`], outerHeight:300}, document.getElementById('qdt7'));
         
         // var components = QdtComponents.picasso.components;
         // var props = {
