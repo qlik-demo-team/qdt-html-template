@@ -66,32 +66,7 @@
          QdtComponent.render('QdtPicasso', {type: 'verticalBarchart', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:300}, document.getElementById('qdt3'));
          QdtComponent.render('QdtPicasso', {type: 'pie', cols: ['Case Owner Group', "=Num(Avg([Case Duration Time]), '##')"], outerHeight:400}, document.getElementById('qdt4'));
          QdtComponent.render('QdtPicasso', {type: 'scatterplot', cols: ['Case Owner', `=Avg([Case Duration Time])`, `=Count( {$<Status -={'Closed'} >} Distinct %CaseId )`], outerHeight:300}, document.getElementById('qdt7'));
-        
-        var components = QdtComponents.picasso.components;
-        var props = {
-            cols: [
-                "Case Owner Group",
-                "=Num(Avg([Case Duration Time]), '##.0')",
-                "=Count( {$<Priority={'Low'}, Status -={'Closed'} >} Distinct %CaseId )",
-                "=Count( {$<Priority={'Medium'}, Status -={'Closed'} >} Distinct %CaseId )",
-                "=Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )",
-            ],
-            outerHeight: 300,
-            settings: QdtComponents.picasso.settings.verticalBarchart
-        };
-        props.settings.scales.y = { data: { fields: ['qMeasureInfo/0', 'qMeasureInfo/1', 'qMeasureInfo/2'] }, invert: true, expand: 0.04 };
-          props.settings.components.push(components.line({
-            displayOrder: 3, y: { field: 'qMeasureInfo/1' }, stroke: '#960000',
-          }));
-          props.settings.components.push(components.point({ displayOrder: 4, y: { field: 'qMeasureInfo/1' }, fill: '#960000' }));
-          props.settings.components.push(components.line({
-            displayOrder: 5, y: { field: 'qMeasureInfo/2' }, stroke: '#99cc66',
-          }));
-          props.settings.components.push(components.point({ displayOrder: 6, y: { field: 'qMeasureInfo/2' }, fill: '#99cc66' }));
-          props.settings.components.push(components.point({ displayOrder: 7, y: { field: 'qMeasureInfo/3' }, fill: '#275378' }));
-
-        console.log(props)
-         QdtComponent.render('QdtPicasso', props, document.getElementById('qdt8'));
+         QdtComponent.render('QdtPicasso', {type: 'lineChart', cols: ['Date.autoCalendar.YearMonth', `=Sum([Number of New Cases])`], outerHeight:300}, document.getElementById('qdt8'));
      </script>
 
      

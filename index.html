@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs2015.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script src="/js/qdt-lui.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head> 
 
@@ -38,7 +37,6 @@
         </ul>
     </div>
     <div id="qdt1"></div>
-    <div id="qdt2"></div>
     
     <script type="text/javascript">
         var qConfig = {
@@ -56,9 +54,7 @@
          }
          var QdtComponent = new window.QdtComponents(qConfig.config, qConfig.connections);
          var element = document.getElementById('qdt1');
-         var element2 = document.getElementById('qdt2');
          QdtComponent.render('QdtViz', {id: 'a5e0f12c-38f5-4da9-8f3f-0e4566b28398', height:'300px'}, element);
-         QdtLui.render('LuiDropdown');
      </script>
      
     <div class="pt50">

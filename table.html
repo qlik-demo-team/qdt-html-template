@@ -62,12 +62,7 @@
                     "=dual(floor((vToday - [Employee Hire Date])/365) & 'y ' & floor(((vToday - [Employee Hire Date])/365 - floor((vToday - [Employee Hire Date])/365)) * 12) & 'm', vToday - [Employee Hire Date])",
                     "=Count( {$<Status -={'Closed'} >} Distinct %CaseId )",
                     "=Count( {$<[Case Is Closed] ={'True'} >} %CaseId )",
-                    {
-                        "qDef": {
-                            "qLabel": "Total",
-                            "qDef": "Count(Distinct [%CaseId])"
-                        }
-                    },
+                    '=Count(Distinct [%CaseId])',
                 ],
                 options: {
                     showTitles: true,
@@ -119,12 +114,7 @@
                         "=dual(floor((vToday - [Employee Hire Date])/365) & 'y ' & floor(((vToday - [Employee Hire Date])/365 - floor((vToday - [Employee Hire Date])/365)) * 12) & 'm', vToday - [Employee Hire Date])",
                         "=Count( {$<Status -={'Closed'} >} Distinct %CaseId )",
                         "=Count( {$<[Case Is Closed] ={'True'} >} %CaseId )",
-                        {
-                            "qDef": {
-                                "qLabel": "Total",
-                                "qDef": "Count(Distinct [%CaseId])"
-                            }
-                        },
+                        '=Count(Distinct [%CaseId])',
                     ],
                     options: {
                         showTitles: true,
